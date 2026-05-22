@@ -324,15 +324,24 @@
                 .replace(/"/g, '&quot;');
         }
 
+        
+   // УЛУЧШЕННАЯ функция для ссылок — теперь обрабатывает ВСЕ https?:// и telegram-ссылки (даже без http)
         function linkifyText(text) {
             if (!text) return '';
-            // заменяем URL на кликабельные ссылки
+            // Заменяем URL, начинающиеся с http:// или https://
+            let result = escapeHTML(text);
             const urlRegex = /(https?:\/\/[^\s<>"']+)/gi;
-            return escapeHTML(text).replace(urlRegex, function(url) {
+            result = result.replace(urlRegex, function(url) {
                 return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
             });
-        }
-
+            // Дополнительно обрабатываем ссылки вида t.me/... (без протокола)
+            const tgRegex = /(t\.me\/[a-zA-Z0-9_]+)/gi;
+            result = result.replace(tgRegex, function(match) {
+                const fullUrl = 'https://' + match;
+                return '<a href="' + fullUrl + '" target="_blank" rel="noopener noreferrer">' + match + '</a>';
+                });
+            return result;
+            
         function buildRegionSelectorHTML() {
             let options = '<option value="">выберите регион прописки</option>';
             regions.forEach((reg, idx) => {
