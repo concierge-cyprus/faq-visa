@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>FAQ · Визовая поддержка</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #ffffff;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.4;
+      color: #1a1a1a;
+      padding: 2rem 1.5rem 3rem;
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 2.2rem;
+      letter-spacing: -0.3px;
+      color: #0b0b0b;
+      line-height: 1.3;
+    }
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.4rem;
+    }
+    .accordion-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.35rem;
+      font-weight: 550;
+      padding: 1.2rem 0.3rem 1.1rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      background: transparent;
+      line-height: 1.3;
+      letter-spacing: -0.2px;
+    }
+    .accordion-btn:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+    .accordion-icon {
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-left: 0.8rem;
+      flex-shrink: 0;
+      opacity: 0.6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding-left: 0.3rem;
+    }
+    .accordion-content.open {
+      max-height: 2500px;
+      transition: max-height 0.45s ease-in;
+    }
+    .content-inner {
+      padding: 0.4rem 0 1.6rem 0;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #2c2c2c;
+      background: #ffffff;
+      line-height: 1.5;
+    }
+    .content-inner a {
+      color: #0b4f8a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+    .content-inner a:hover {
+      color: #032b4d;
+      text-decoration-thickness: 2px;
+    }
+
+    /* Цвета заголовков */
+    .accordion-btn.color-1 {
+      color: #7b2d8b;
+    }
+    .accordion-btn.color-2 {
+      color: #1a56b8;
+    }
+    .accordion-btn.color-3 {
+      color: #c2185b;
+    }
+    .accordion-btn.color-4 {
+      color: #0f0f0f;
+    }
+
+    /* Стили форматирования */
+    .price {
+      font-weight: 700;
+      color: #2d8a2d;
+    }
+    .label-underline {
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .bold-term {
+      font-weight: 700;
+    }
+    .bold-red {
+      font-weight: 700;
+      color: #c41e1e;
+    }
+    .bold-text {
+      font-weight: 700;
+    }
+    .italic-text {
+      font-style: italic;
+    }
+    .contact-link {
+      font-weight: 600;
+    }
+
+    .legal-footer {
+      margin-top: 1.2rem;
+      border-top: 1px solid #cccccc;
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      color: #1e1e1e;
+      background: #ffffff;
+      line-height: 1.2;
+    }
+    .legal-footer h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .legal-footer p, .legal-footer div {
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .legal-footer a {
+      color: #0b4f8a;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .legal-footer a:hover {
+      color: #032b4d;
+    }
+    @media (max-width: 500px) {
+      body {
+        padding: 1.2rem 1rem 2rem;
+      }
+      .accordion-btn {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Варианты подачи</h1>
+
+  <div class="accordion" id="faqAccordion"></div>
+
+  <div class="legal-footer">
+    <h2>Важная правовая информация</h2>
+    <p>Для того, чтобы воспользоваться услугами нашей организации, просим ознакомиться с документами:</p>
+    <div>
+      <a href="https://cyprus-visa.ru/policy_pd.pdf" target="_blank" rel="noopener noreferrer">Политика обработки персональных данных</a>
+    </div>
+    <div>
+      <a href="https://cyprus-visa.ru/oferta.pdf" target="_blank" rel="noopener noreferrer">Публичная оферта</a>
+    </div>
+    <div>
+      <a href="https://cyprus-visa.ru/consent_pd.pdf" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const faqItems = [
+        {
+          title: "Подача через наш офис в московское и питерское консульство",
+          colorClass: "color-1",
+          content: `Места на подачу есть всегда, примем ваш ГОТОВЫЙ комплект и пригласим на сдачу биометрии в течение недели. Стоимость <span class="price">43.000 р.</span>
+<span class="label-underline">Входит:</span> срочная подача без слота в блс.
+<span class="label-underline">Не входит:</span> консульский сбор, консультирование, анкета.
+<span class="bold-term">Срок рассмотрения:</span> от 15 до 45 дней (в сезон до 60)
+
+Если нужна помощь в сборе и подготовке, тариф 1.2. <span class="price">6.000 р.</span>
+<span class="italic-text">Мы не влияем на скорость рассмотрения. Если до вылета остаётся мало времени, а ваши документы не рассмотрены, вы (или ваши приглашающие) вправе звонить и писать в консульство с просьбой ускорить рассмотрение вашей заявки.</span>
+
+<span class="contact-link">Для оформления связаться с нами:</span> <a href="https://t.me/cyprusvac" target="_blank" rel="noopener noreferrer">https://t.me/cyprusvac</a>`
+        },
+        {
+          title: "Срочная подача через наш офис в краснодарское консульство (все регионы)",
+          colorClass: "color-2",
+          content: `Места на подачу есть всегда, примем ваш ГОТОВЫЙ комплект и пригласим на сдачу биометрии в Краснодаре в течение недели.
+<span class="label-underline">Входит:</span> консульский сбор, список необходимых документов.
+<span class="label-underline">Не входит:</span> консультирование, анкета.
+<span class="bold-term">Срок рассмотрения:</span> 2-3 р.д. стоимость <span class="price">80.000 р</span>
+<span class="bold-term">Срок рассмотрения:</span> 15 р.д. стоимость <span class="price">65.000 р</span>
+
+Если нужна помощь в сборе и подготовке, тариф 1.2. <span class="price">6.000 р</span>
+
+<span class="contact-link">Для оформления связаться с нами:</span> <a href="https://t.me/cyprusvac" target="_blank" rel="noopener noreferrer">https://t.me/cyprusvac</a>`
+        },
+        {
+          title: "Подача с нашей помощью в сборе и подготовке документов",
+          colorClass: "color-3",
+          content: `<span class="label-underline">Входит:</span> персональный список необходимых документов, анкета, проверка присланных документов.
+<span class="label-underline">Не входит:</span> слот в bls.
+
+1.1. Консультирование (помощь после отказа, разбор нетипичного случая) — <span class="price">5.000 ₽</span>.
+1.2. Подготовка анкеты и персонального списка, проверка документов — <span class="price">6.000 ₽</span> за комплект.
+1.3. Печать/копирование комплекта документов ч/б для подачи — <span class="price">2.000 ₽</span> за комплект. Печать фото из файла <span class="price">500 ₽</span> за комплект на 1 человека, обработка фото с мобильного телефона <span class="price">1000 ₽</span>. Курьерская доставка до BLS <span class="price">1500 ₽</span>. (Для вариантов подачи 1 и 2).
+1.4. Переделать анкету из-за изменившихся обстоятельств поездки или опечаток, допущенных заявителем — <span class="price">800 ₽</span> за анкету.
+
+<span class="bold-text">Проверяются только те документы, которые вы прислали.</span>
+
+<span class="bold-red">Ответственность за комплектность собранных документов по персональному списку лежит на туристе.</span> Если вы не прислали какой-либо документ из списка, наш сотрудник не будет его запрашивать, так как вы имеете право их не предоставлять.
+
+<span class="bold-red">Обращаем ваше внимание,</span> если вы присылаете ссылку на файлообменник, будут проверены только те документы, которые есть в папке на момент предоставления ссылки. В случае обновления, изменения или дозагрузки документов, необходимо прислать ссылку повторно с комментарием об изменениях.
+
+<span class="contact-link">Для оформления связаться с нами:</span> <a href="https://t.me/cyprusvac" target="_blank" rel="noopener noreferrer">https://t.me/cyprusvac</a>`
+        },
+        {
+          title: "Подача в консульство",
+          colorClass: "color-4",
+          content: `Только для тех, кого приглашает ближайший родственник - гражданин ЕС или у кого экстренный вылет (происшествие или вызов в гос.орган). Пишете e-mail в консульский отдел и согласовываете дату и время подачи, <span class="bold-term">сроки рассмотрения от 1 дня</span>, по ситуации. Консульский сбор отдельно.`
+        }
+      ];
+
+      const container = document.getElementById('faqAccordion');
+      if (!container) return;
+
+      function buildAccordion() {
+        container.innerHTML = '';
+        faqItems.forEach((item) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'accordion-item';
+
+          const button = document.createElement('button');
+          button.className = 'accordion-btn ' + item.colorClass;
+          button.setAttribute('aria-expanded', 'false');
+          button.innerHTML = `${escapeHTML(item.title)} <span class="accordion-icon">+</span>`;
+
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'accordion-content';
+          const innerDiv = document.createElement('div');
+          innerDiv.className = 'content-inner';
+          innerDiv.innerHTML = item.content;
+          contentDiv.appendChild(innerDiv);
+
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isOpen = contentDiv.classList.contains('open');
+
+            const allContents = document.querySelectorAll('.accordion-content');
+            const allButtons = document.querySelectorAll('.accordion-btn');
+            allContents.forEach(c => c.classList.remove('open'));
+            allButtons.forEach(b => {
+              b.setAttribute('aria-expanded', 'false');
+              const icon = b.querySelector('.accordion-icon');
+              if (icon) icon.textContent = '+';
+            });
+
+            if (!isOpen) {
+              contentDiv.classList.add('open');
+              button.setAttribute('aria-expanded', 'true');
+              const icon = button.querySelector('.accordion-icon');
+              if (icon) icon.textContent = '−';
+            }
+          });
+
+          itemDiv.appendChild(button);
+          itemDiv.appendChild(contentDiv);
+          container.appendChild(itemDiv);
+        });
+      }
+
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      buildAccordion();
+    })();
+  </script>
+</body>
+</html>
